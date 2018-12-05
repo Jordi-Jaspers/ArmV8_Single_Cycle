@@ -1,3 +1,7 @@
+/*
+ *	Module: RegisterFile
+ */
+ 
 module RegisterFile(R1, R2, WReg, Data, WE, Out1, Out2, Clk);
 	input Clk;						//Clock signaal
 	
@@ -26,7 +30,7 @@ module RegisterFile(R1, R2, WReg, Data, WE, Out1, Out2, Clk);
 		registers[WReg] <= #3 Data;
 	end
 	
-
+	// always @ (*) betekent bij iedere verandering voer dit uit.
 	always @ (*)
 	begin
 		registers[31] <= {64{1'b0}}; //set register 31 terug naar 0
