@@ -24,7 +24,7 @@ module RegisterFile(R1, R2, WReg, Data, WE, Out1, Out2, Clk);
     
 	//Door een always the doen maakt verilog automatisch een sensitivity-list
 	//Als WE is HIGH en WREG is 5bit dan mag schrijf de data naar WReg register
-	always @ (negedge Clk)
+	always @ (posedge Clk)
 	begin
 		if(WE && WReg != 5'b11111)
 		registers[WReg] <= #3 Data;

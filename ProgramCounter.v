@@ -17,7 +17,7 @@ input ALUZero;
 
 output reg [NextPC];
 
-always @ (negedge Clk)
+always @ (posedge Clk)
 begin
 	if(Rst == 1)                                //Als reset HIGH is dan reset PC
         NextPC <= 0;
