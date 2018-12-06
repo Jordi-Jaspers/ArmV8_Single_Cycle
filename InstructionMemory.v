@@ -11,16 +11,15 @@
  * 4c: ORRI X9, X9,             load 0x789      =>  1011001000 0111 1000 1001 01001 01001
  * 50: LSL X9, X9, #12          shift over      =>  11010011011 11111 001100 01001 01001
  * 54: ORRI X9, X9,             laod 0xabc      =>  1011001000 1010 1011 1100 01001 01001
- * 58: LSL X9, X9, #12          shift over      => 11010011011 11111 001100 01001 01001  
- * 5c: ORRI X9, X9,             laod 0xdef      => 1011001000 1101 1110 1111 01001 01001
- * 60: LSL X9, X9, #4           shift over      => 11010011011 11111 000100 01001 01001
- * xx: STUR X9, [XZR, 0x28]     store to memory => 11111000000 000101000 00 11111 01001
- * xx: LDUR X10, [XZR, 0x28]    Correct?        => 11111000010 000101000 00 11111 01010
+ * 58: LSL X9, X9, #12          shift over      =>  11010011011 11111 001100 01001 01001  
+ * 5c: ORRI X9, X9,             laod 0xdef      =>  1011001000 1101 1110 1111 01001 01001
+ * 60: LSL X9, X9, #4           shift over      =>  11010011011 11111 000100 01001 01001
+ * xx: STUR X9, [XZR, 0x28]     store to memory =>  11111000000 000101000 00 11111 01001
+ * xx: LDUR X10, [XZR, 0x28]    Correct?        =>  11111000010 000101000 00 11111 01010
  *
 */
 
 module InstructionMemory(Instruction, Address);
-    input Clk;						//Clock signaal
     input [64:0] Address            //64bit adres-code
 
     output [31:0] Instruction       //32bit instructiecode uitvoer

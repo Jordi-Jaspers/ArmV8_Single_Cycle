@@ -12,5 +12,5 @@ input [31:0] needtoextend;
 output [63:0] extended;
 
 //Zoals in het boek beschreven 31 getallen van de van de MSB [0] aan de voorkant toevoegen.
-assign extended = {{31{needtoextend[31]}},needtoextend};
+assign extended = {{32{needtoextend[31]}},needtoextend};
 endmodule

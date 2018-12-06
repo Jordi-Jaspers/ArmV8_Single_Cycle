@@ -53,7 +53,7 @@ module DataMemory(ReadData , Address , WriteData , MemoryRead , MemoryWrite , Cl
      begin
 	if(MemoryWrite)
 	    begin
-            memBank[Address] <= #20 WriteData[63:56] ;
+            memBank[Address]   <= #20 WriteData[63:56];
             memBank[Address+1] <= #20 WriteData[55:48];
             memBank[Address+2] <= #20 WriteData[47:40];
             memBank[Address+3] <= #20 WriteData[39:32];

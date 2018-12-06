@@ -17,13 +17,13 @@ input ALUZero;
 
 output reg [NextPC];
 
-always @ (posedge Clk)
+always @ (negedge Clk)
 begin
 	if(Rst == 1)                                //Als reset HIGH is dan reset PC
         NextPC <= 0;
     else if (branch == 1 && ALUZero == 1)       //Als CBZ (compare and branche on zero) dan pc + 1 met signext Binary shift left
-        NextPC <= CurrentPC + (SignExt << 1);
+        NextPC <= CurrentPC + (SignExt << 2);
     else
-        NextPC <= CurrentPC + 2
+        NextPC <= CurrentPC + 4
 end
 endmodule

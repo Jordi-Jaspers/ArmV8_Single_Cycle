@@ -14,14 +14,14 @@ All the code that is copied or used from other sources will be mentioned in the 
 The single cycle processor is made out of 9 modules and ofcourse a testfile.
 
 1.  RegisterFile    	-->     done!
-2.  ProgramCounter      -->     Laat het checken...
-3.  SignExtend          -->     Laat het checken...
+2.  ProgramCounter      -->     done!
+3.  SignExtend          -->     done!
 4.  ALU                 -->     done!
 5.  ALUControl          -->     done!
-6.  DataMemory          -->     Testdata nodig denk ik...
-7.  InstructionMem      -->     done! is de clock nodig daar??
-8.  SingleCycle         -->     Snap ik niet.. nog aanmaken
-9.  SingleCycleControl  -->     Snap ik niet.. nog aanmaken
+6.  DataMemory          -->     done!
+7.  InstructionMem      -->     done!
+8.  SingleCycle         -->     Verbinden
+9.  SingleCycleControl  -->     done! (Control & ALUControl are 1 unit.)
 10. Test file?
 
 Vraag hoe ik dit moet compilen met quartus want modelsim is het slechtste programma ooit gemaakt in heel de wereld.
