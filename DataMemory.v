@@ -32,6 +32,16 @@ module DataMemory(ReadData , Address , WriteData , MemoryRead , MemoryWrite , Cl
     end
     endtask
 
+initial
+     begin
+	// Data instellen dat gebruikt wordt in instruction memory
+	initset( 64'h0,  64'h1);  		//Counter variable
+	initset( 64'h8,  64'ha);  		//deel van het masker
+	initset( 64'h10, 64'h5);  		//ander deel van een masker
+	initset( 64'h18, 64'h0ffbea7deadbeeff); //grote constante
+	initset( 64'h20, 64'h0); 		//delete
+     end
+
     //Data uitlezen en ophalen
    always @(posedge Clk)
      begin

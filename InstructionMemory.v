@@ -20,28 +20,30 @@
 */
 
 module InstructionMemory(Instruction, Address);
-    input [64:0] Address            //64bit adres-code
+    input [63:0] Address;            //64bit adres-code
 
-    output [31:0] Instruction       //32bit instructiecode uitvoer
+    output [31:0] Instruction;       //32bit instructiecode uitvoer
 
-    reg [31:0] Instruction
+    reg [31:0] Instruction;
     
     always @ (Address) begin
         case(Address)
-            63'h038: Data = 32'h8B1F03E9;
-            63'h03c: Data = 32'hB2048D29;
-            63'h040: Data = 32'hD37F3129;
-            63'h044: Data = 32'hB2115929;
-            63'h048: Data = 32'hD37F3129;
-            63'h04c: Data = 32'hB21E2529;
-            63'h050: Data = 32'hD37F3129; 
-            63'h054: Data = 32'hB22AF129; 
-            63'h058: Data = 32'hD37F3129; 
-            63'h05c: Data = 32'hB237BD29;
-            63'h060: Data = 32'hD37F1129; 
-            63'h064: Data = 32'hF80283E9;
-            63'h068: Data = 32'hF84283EA;
-            default: Instruction = 32'hXXXXXXXX;
+	63'h000: Instruction = 32'hF84003E9;
+	63'h004: Instruction = 32'hF84083EA;
+	63'h008: Instruction = 32'hF84103EB;
+	63'h00c: Instruction = 32'hF84183EC;
+	63'h010: Instruction = 32'hF84203ED;
+	63'h014: Instruction = 32'hAA0B014A;
+	63'h018: Instruction = 32'h8A0A018C;
+	63'h01c: Instruction = 32'hB400008C;
+	63'h020: Instruction = 32'h8B0901AD;
+	63'h024: Instruction = 32'hCB09018C;
+	63'h028: Instruction = 32'h17FFFFFD;
+	63'h02c: Instruction = 32'hF80203ED;
+	63'h030: Instruction = 32'hF84203ED;
+        63'h064: Instruction = 32'hF80283E9;
+        63'h068: Instruction = 32'hF84283EA;
+        default: Instruction = 32'hXXXXXXXX;
         endcase
     end
 endmodule   

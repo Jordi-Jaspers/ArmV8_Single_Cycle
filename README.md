@@ -20,8 +20,8 @@ The single cycle processor is made out of 9 modules and ofcourse a testfile.
 5.  ALUControl          -->     done!
 6.  DataMemory          -->     done!
 7.  InstructionMem      -->     done!
-8.  SingleCycle         -->     Verbinden
-9.  SingleCycleControl  -->     done! (Control & ALUControl are 1 unit.)
+8.  SingleCycle         -->     done!
+9.  SingleCycleControl  -->     done!
 10. Test file?
 
 Vraag hoe ik dit moet compilen met quartus want modelsim is het slechtste programma ooit gemaakt in heel de wereld.

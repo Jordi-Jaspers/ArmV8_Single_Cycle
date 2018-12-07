@@ -6,8 +6,8 @@ module RegisterFile(R1, R2, WReg, Data, WE, Out1, Out2, Clk);
 	input Clk;						//Clock signaal
 	
 	input [4:0] R1, R2;				//5-bits -> 32 plekker in een register
-	input [4:0]	WReg				//Bepaalt welke register naar to schrijven
-	input [64:0] Data				//DAta die wegeschreven moet worden
+	input [4:0]	WReg;				//Bepaalt welke register naar to schrijven
+	input [64:0] Data;				//DAta die wegeschreven moet worden
 	input WE;						//Write-enable
 	
 	output [63:0] Out1, Out2;		//2 - 64bit data uitvoer
