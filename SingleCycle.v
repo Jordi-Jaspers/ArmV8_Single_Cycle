@@ -6,9 +6,9 @@
  *
  */
 
-module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
+module SingleCycle(Clk, Rst, startPC, currentPC, dMemOut);
    input Clk;
-   input Reset;
+   input Rst;
    input [63:0] startPC;
    output [63:0] currentPC;
    output [63:0] dMemOut;
@@ -20,15 +20,15 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
    //Instruction Decode -- wire Book page 272
    wire [31:0] 	 currentInstruction;
    wire [10:0] 	 OPCode;
-   wire [4:0] 	    rm,rn,rd;
-   wire [4:0]      R2;  
+   wire [4:0] 	    rm,rn,rd;  
    wire [5:0] 	    shamt;
 
-   assign {opcode, rm, shamt, rn, rd} = currentInstruction;
+   assign {OPCode, rm, shamt, rn, rd} = currentInstruction;
    
    wire [63:0] 	 Out1;
    wire [63:0] 	 Out2;
    wire [63:0] 	 Data;
+   wire [4:0]	 Rb;
    
    //Control & ALUControl Logic Wires
    wire Reg2Loc, Branch, MemRead, MemToReg, MemWrite, ALUSrc, RegWrite;
@@ -44,6 +44,9 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
    
    //Data Memory Wires -- ReadData in module
    wire [63:0] 	 dMemOut;
+
+   //SignExtension wires
+   wire [63:0]    signextended;
 
    //Instruction Memory
    InstructionMemory instrMem(
@@ -63,16 +66,16 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
    );   
 
 
-	always @ (posedge Clk, posedge Reset) 
+	always @ (posedge Clk, Rst) 
 	begin
-		if(Reset == 1)
+		if(Rst)
 			currentPC = startPC;
 		else
 			currentPC = nextPC;
 	end
    
    //Control
-   SingleCycleControl control(
+   Control control(
       .OPCode(OPCode),
       .Reg2Loc(Reg2Loc),
       .Branch(Branch),
@@ -86,23 +89,24 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
    
    //Register file
    //Mux voor Read Register 2 als Reg2Loc is 1 dan Rb = rd ander Rb = rm
-	assign R2 = Reg2Loc ? rd : rm;
+   assign Rb = Reg2Loc ? rd : rm;
 
    RegisterFile registers(
       .R1(rn), 
-      .R2(R2),
-      .WReg(Rd), 
+      .R2(Rb),
+      .WReg(rd), 
       .Data(Data), 
       .WE(RegWrite), 
       .Out1(Out1), 
       .Out2(Out2), 
-      .Clk(Clk)
+      .Clk(Clk),
+      .Rst(Rst)
    );   
    
    //Sign Extender -- vragen
-   SignExtender SignExt(
-      .needtoextendcurrentInstruction(currentInstruction), 
-      .extended(ALUIn2)
+   SignExtend SignExt(
+      .Instruction(currentInstruction), 
+      .extended(signextended)
    );
 
    //ALU-control
@@ -112,8 +116,9 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
       .OPCode(OPCode)
    );
 
-   assign #2 ALUIn2 = ALUSrc ? ALUIn2 : Out2;
-   
+   assign ALUIn2 = ALUSrc ? signextended : Out2;
+   assign ALUIn1 = Out1;
+
    ALU mainALU(
       .Out(OutALU), 
       .R1(ALUIn1), 
@@ -131,6 +136,6 @@ module SingleCycleProc(Clk, Reset, startPC, currentPC, dMemOut);
                    .Clk(Clk));
   
    /* create MemToReg mux - another ternary statement */
-	assign Data = MemToReg ? dMemOut : OutALU;
+	assign Data = MemToReg == 1 ? dMemOut : OutALU;
    
 endmodule

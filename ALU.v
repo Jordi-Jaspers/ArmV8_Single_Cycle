@@ -28,25 +28,25 @@
         begin
 		case(Mode)
 			`AND: begin
-			Out <= #20 R1 & R2;
+			Out = R1 & R2;
 			end
 			`OR: begin
-			Out <= #20 R1 | R2;
+			Out = R1 | R2;
 			end
 			`ADD: begin
-			Out <= #20 R1 + R2;
+			Out = R1 + R2;
 			end
 			`LSL: begin
-			Out <= #20 R1 << R2;
+			Out = R1 << R2;
 			end
 			`LSR: begin
-			Out <= #20 R1 >> R2;
+			Out = R1 >>> R2;
 			end
 			`SUB: begin
-			Out <= #20 R1 - R2;
+			Out = R1 - R2;
 			end
 			`PassB: begin
-			Out <= #20 R2;
+			Out = R2;
 			end
 		endcase
 	end

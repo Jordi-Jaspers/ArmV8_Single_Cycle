@@ -19,10 +19,15 @@ output reg [63:0] NextPC;
 
 always @ (posedge Clk)
 begin
-	if(Rst == 1)                                //Als reset HIGH is dan reset PC
+    if(Rst == 1)                                //Als reset HIGH is dan reset PC
         NextPC <= 0;
-    else if (Branch == 1 && ALUZero == 1)       //Als CBZ (compare and branche on zero) dan pc + 1 met signext Binary shift left
-        NextPC <= CurrentPC + (SignExt << 2);
+    else if (Branch)				//Als CBZ (compare and branche on zero) dan pc + 1 met signext Binary shift left
+    begin			    
+	 if(ALUZero)       
+        	NextPC = CurrentPC + (SignExt << 2);
+    	 else
+		NextPC = CurrentPC + 4;
+    end
     else
         NextPC <= CurrentPC + 4;
 end

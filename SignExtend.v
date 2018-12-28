@@ -18,7 +18,7 @@
 `define LSROPCODE  11'b11010011010
 `define BOPCODE    6'b000101
 
-module signextend(Instruction, extended);
+module SignExtend(Instruction, extended);
 
 input [31:0] Instruction;
 output reg [63:0] extended;

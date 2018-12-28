@@ -1,15 +1,11 @@
-`define STRLEN 32
-`define HalfClockPeriod 60
-`define ClockPeriod `HalfClockPeriod * 2
-
-module SingleCycleProcTest_v;
+module TestBench;
    task Test;
       input [63:0]   GekregenWaarde;
-		input [63:0]   VerwachteWaarde;
+      input [63:0]   VerwachteWaarde;
       input [256:0]  testType;
       inout [7:0]    passed;
       
-      if(actualOut == expectedOut)
+      if(GekregenWaarde == VerwachteWaarde)
       begin 
          $display ("%s passed", testType); 
          passed = passed + 1; 
@@ -29,11 +25,11 @@ module SingleCycleProcTest_v;
    endtask
    
    // Inputs
-   reg 		  		CLK;
-   reg 		  		Reset_L;
+   reg 		  		Clk;
+   reg 		  		Rst;
    reg [63:0] 	  	startPC;
    reg [7:0] 	  	passed;
-   reg [15:0] 	  	counter;
+   reg [15:0] 	  	Counter;
  	  
    // Outputs
    wire [63:0] 	  dMemOut;
@@ -43,32 +39,32 @@ module SingleCycleProcTest_v;
    // Instantiate the Unit Under Test (UUT)
    SingleCycle TeTestenUnit (
 		.Clk(Clk), 
-		.Reset(Reset_L), 
+		.Rst(Rst), 
 	   .startPC(startPC),
 		.currentPC(currentPC),
 		.dMemOut(dMemOut)
 	);
    
-   initial begin
+   initial 
+   begin
       // Initialize Inputs
-      Reset_L = 1;
+      Rst = 1;
       startPC = 0;
       passed = 0;
 
       // Initialize Watchdog timer
-      counter = 0;
+      Counter = 0;
       
       
       // Wait for global reset
-      #(120);
+      #120
       
       #1
-	   Reset = 0; 
+      Rst = 0; 
       startPC = 0;
 
-      #(120);
-      Reset = 1;
-
+      #120
+	
       // ***********************************************************
       // Hier blijft de unit testen tot de laatste instructie is 
       // geweest en als het in een ondeindige loop terecht zou komen
@@ -78,12 +74,12 @@ module SingleCycleProcTest_v;
 
    while (currentPC < 64'h30)
 	begin
-	   #(120);
+	   #120
 	   $display("CurrentPC:%h", currentPC);
 	   
 	end
-      #(120);	
-      Test(dMemOut, 64'hF, "Results of Program 1", passed);
+      #120	
+      Test(dMemOut, 64'h2, "Results of Program 1", passed);
       isGeslaagd(passed, 1); 	
       $finish;
    end
@@ -97,12 +93,12 @@ module SingleCycleProcTest_v;
    begin
       #60 Clk = ~Clk;
       #60 Clk = ~Clk;
-      watchdog = watchdog +1;
+      Counter = Counter + 1;
      
    end
 
    always @*
-     if (counter == 16'hFFFF)
+     if (Counter == 16'hFFFF)
      begin
      	$display("Infinite loop, programma sluiten!!");
       $finish;

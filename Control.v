@@ -44,124 +44,124 @@ begin
     case(OPCode)
         `LDUROPCODE:                        // ALUOP[00] D-type (Load & Store)
             begin
-                Reg2Loc     <=  1'bx;    
-                ALUSrc      <=  1'b1;
-                MemToReg    <=  1'b1;
-                RegWrite    <=  1'b1;          
-                MemRead     <=  1'b1;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b00;                       
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b1;
+                MemToReg    =  1'b1;
+                RegWrite    =  1'b1;          
+                MemRead     =  1'b1;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b00;                       
             end
 	    `STUROPCODE: 
             begin
-                Reg2Loc     <=  1'b1;    
-                ALUSrc      <=  1'b1;
-                MemToReg    <=  1'bx;
-                RegWrite    <=  1'b0;          
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b1;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b00;       
+                Reg2Loc     =  1'b1;    
+                ALUSrc      =  1'b1;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b0;          
+                MemRead     =  1'b0;
+                MemWrite    =  1'b1;
+                Branch      =  1'b0;
+                ALUOP       =  2'b00;       
             end
         `CBZOPCODE:                         // ALUOP[01] B-type (CBZ)
             begin
-                Reg2Loc     <=  1'b1;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;          
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b1;
-                ALUOP       <=  2'b01;
+                Reg2Loc     =  1'b1;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;          
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b1;
+                ALUOP       =  2'b01;
             end
 	    `ADDOPCODE:                         // ALUOP[10] R-types (AND & OR & ...)  
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;          
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;          
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
             end
 	    `SUBOPCODE: 
             begin
-                Reg2Loc     <=  1'b0;   
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
+                Reg2Loc     =  1'b0;   
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
             end
 	    `ANDOPCODE: 
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
             end
 	    `ORROPCODE: 
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
             end
 	    `BOPCODE: 
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
-            end
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
+            end 
 	    `LSROPCODE: 
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
-            end
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
+            end 
         `LSLOPCODE: 
             begin
-                Reg2Loc     <=  1'b0;    
-                ALUSrc      <=  1'b0;
-                MemToReg    <=  1'b0;
-                RegWrite    <=  1'b1;           
-                MemRead     <=  1'b0;
-                MemWrite    <=  1'b0;
-                Branch      <=  1'b0;
-                ALUOP       <=  2'b10;
-            end    
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b1;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b10;
+            end   
         default:                                //RESET! alles op X
             begin
-                Reg2Loc     <=  1'bx;    
-                ALUSrc      <=  1'bx;
-                MemToReg    <=  1'bx;
-                RegWrite    <=  1'bx;           
-                MemRead     <=  1'bx;
-                MemWrite    <=  1'bx;
-                Branch      <=  1'bx;
-                ALUOP       <=  2'bxx;
+                Reg2Loc     =  1'b0;    
+                ALUSrc      =  1'b0;
+                MemToReg    =  1'b0;
+                RegWrite    =  1'b0;           
+                MemRead     =  1'b0;
+                MemWrite    =  1'b0;
+                Branch      =  1'b0;
+                ALUOP       =  2'b00;
            end
         endcase       
     end

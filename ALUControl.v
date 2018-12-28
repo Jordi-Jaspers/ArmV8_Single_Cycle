@@ -22,7 +22,7 @@
 `define LSROPCODE  11'b11010011010
 `define BOPCODE    11'b000101?????
 
-module Control(Operation, ALUOP, OPCode);
+module ALUControl(Operation, ALUOP, OPCode);
 
 input [1:0] ALUOP;                          //2bit ALUOP
 input [10:0] OPCode;                        //11bit OPCode
@@ -30,33 +30,33 @@ output reg [3:0] Operation;                 //4bit operation
 
 always @ (*)
 begin
-	Operation <= 4'b1;                      // initialiseer
+	Operation = 4'b1;                      // initialiseer
 	if (ALUOP == 2'b00)                     // ALUOP[00] D-type
-		Operation <= #2 4'b0010;
+		Operation =  4'b0010;
 	if (ALUOP == 2'b01)                     // ALUOP[01] B-type
-		Operation <= #2 4'b0111;
+		Operation =  4'b0111;
 	if (ALUOP == 2'b10)                     // ALUOP[10] R-types
 	begin
 		if (OPCode == `ADDOPCODE)      		
-			Operation <= #2 4'b0010;
+			Operation =  4'b0010;
 
 		if (OPCode == `SUBOPCODE)      		
-			Operation <= #2 4'b0110;
+			Operation =  4'b0110;
 
 		if (OPCode == `ANDOPCODE)      
-			Operation <= #2 4'b0000;
+			Operation =  4'b0000;
 
 		if (OPCode == `ORROPCODE)     
-			Operation <= #2 4'b0001;    
+			Operation =  4'b0001;    
 
 		if (OPCode == `LSLOPCODE)      
-			Operation <= #2 4'b0011;
+			Operation =  4'b0011;
 
 		if (OPCode == `LSROPCODE)      
-			Operation <= #2 4'b0111;
+			Operation =  4'b0111;
 
 		if (OPCode == `BOPCODE)      
-			Operation <= #2 4'b1111;		        
+			Operation = 4'b1111;		        
 	end
 end
 endmodule
